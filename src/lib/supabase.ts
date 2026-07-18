@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
-const url = import.meta.env.VITE_SUPABASE_URL;
-const anon = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const url = import.meta.env.VITE_SUPABASE_URL || undefined;
+const anon = import.meta.env.VITE_SUPABASE_ANON_KEY || undefined;
 
 if (!url || !anon) {
   console.warn('[supabase] VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY not set — this console has nothing to connect to.');
