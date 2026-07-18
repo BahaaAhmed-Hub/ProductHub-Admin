@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Logo } from '@/components/ui/Logo';
 import { Button } from '@/components/ui/Button';
 import { useAuth } from '@/features/auth/AuthProvider';
@@ -6,6 +7,7 @@ import { isSupabaseConfigured } from '@/lib/supabase';
 
 export function SignInScreen() {
   const { signIn } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -17,6 +19,7 @@ export function SignInScreen() {
     setError(null);
     try {
       await signIn(email, password);
+      navigate('/overview', { replace: true });
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Could not sign in.');
     } finally {
