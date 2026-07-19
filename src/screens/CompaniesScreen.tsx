@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
+import { Icon } from '@/components/ui/Icon';
+import { SelectionBar } from '@/components/ui/SelectionBar';
 import { usePagination, PaginationBar } from '@/components/ui/Pagination';
 import {
   useCompanies, useCompanyActions, useCompanyInvites, useCompanyInviteActions,
@@ -123,15 +125,18 @@ export function CompaniesScreen() {
       )}
 
       {selected.size > 0 && (
-        <div className="flex items-center gap-2 flex-wrap bg-accent-bg rounded-control px-3 py-2">
-          <span className="text-[12px] font-semibold text-navy">{selected.size} selected</span>
-          <Button variant="success" disabled={busy} onClick={() => bulkStatus('active')}>Activate</Button>
-          <Button variant="danger" disabled={busy} onClick={() => bulkStatus('suspended')}>Suspend</Button>
+        <SelectionBar count={selected.size}>
+          <Button variant="secondary" disabled={busy} onClick={() => bulkStatus('active')}>
+            <Icon name="check" size={14} /> Activate
+          </Button>
+          <Button variant="outline-danger" disabled={busy} onClick={() => bulkStatus('suspended')}>
+            <Icon name="ban" size={14} /> Suspend
+          </Button>
           <span className="text-[11px] text-body ml-1">Set plan:</span>
           <Button variant="secondary" disabled={busy} onClick={() => bulkPlan('free')}>Starter</Button>
           <Button variant="secondary" disabled={busy} onClick={() => bulkPlan('pro')}>Business</Button>
           <Button variant="secondary" disabled={busy} onClick={() => bulkPlan('enterprise')}>Enterprise</Button>
-        </div>
+        </SelectionBar>
       )}
 
       <Card className="overflow-hidden">

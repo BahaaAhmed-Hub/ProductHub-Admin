@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
 import { Icon } from '@/components/ui/Icon';
+import { SelectionBar } from '@/components/ui/SelectionBar';
 import { Avatar } from '@/components/ui/Avatar';
 import { usePagination, PaginationBar } from '@/components/ui/Pagination';
 import { useCompanies, useCompanyActions, PLAN_LABEL, type PlanTier } from '@/features/platform/companies';
@@ -118,15 +119,20 @@ export function CompanyDetailScreen() {
       <Card className="p-[18px]">
         <div className="text-[13px] font-semibold mb-3">Users</div>
         {selected.size > 0 && (
-          <div className="flex items-center gap-2 flex-wrap bg-accent-bg rounded-control px-3 py-2 mb-3">
-            <span className="text-[11.5px] font-semibold text-navy">{selected.size} selected</span>
-            <Button variant="success" disabled={busy} onClick={() => run(() => userActions.bulkSetStatus(selectedUsers, 'active'))}>Activate</Button>
-            <Button variant="danger" disabled={busy} onClick={() => run(() => userActions.bulkSetStatus(selectedUsers, 'pending'))}>Suspend</Button>
-            <span className="text-[11px] text-body">Set role:</span>
-            {ROLES.map((r) => (
-              <Button key={r.value} variant="secondary" disabled={busy} onClick={() => run(() => userActions.bulkSetRole(selectedUsers, r.value))}>{r.label}</Button>
-            ))}
-            <Button variant="secondary" disabled={busy} onClick={() => run(() => userActions.bulkResetPasswords(selectedUsers))}>Reset passwords</Button>
+          <div className="mb-3">
+            <SelectionBar count={selected.size}>
+              <Button variant="secondary" disabled={busy} onClick={() => run(() => userActions.bulkSetStatus(selectedUsers, 'active'))}>
+                <Icon name="check" size={14} /> Activate
+              </Button>
+              <Button variant="outline-danger" disabled={busy} onClick={() => run(() => userActions.bulkSetStatus(selectedUsers, 'pending'))}>
+                <Icon name="ban" size={14} /> Suspend
+              </Button>
+              <span className="text-[11px] text-body">Set role:</span>
+              {ROLES.map((r) => (
+                <Button key={r.value} variant="secondary" disabled={busy} onClick={() => run(() => userActions.bulkSetRole(selectedUsers, r.value))}>{r.label}</Button>
+              ))}
+              <Button variant="secondary" disabled={busy} onClick={() => run(() => userActions.bulkResetPasswords(selectedUsers))}>Reset passwords</Button>
+            </SelectionBar>
           </div>
         )}
         <div className="grid grid-cols-[24px_1.8fr_1fr_1fr_1fr_60px] text-[10px] font-semibold text-label uppercase tracking-wide pb-2 border-b-[0.5px] border-hairline">

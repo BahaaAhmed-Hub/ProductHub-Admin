@@ -2,6 +2,8 @@ import { useState, type FormEvent } from 'react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
+import { Icon } from '@/components/ui/Icon';
+import { SelectionBar } from '@/components/ui/SelectionBar';
 import { usePagination, PaginationBar } from '@/components/ui/Pagination';
 import { useInternalTeam, useInternalTeamActions, INTERNAL_ROLES } from '@/features/platform/internalTeam';
 import type { PlatformRole } from '@/features/auth/AuthProvider';
@@ -82,12 +84,17 @@ export function InternalTeamScreen() {
       )}
 
       {selected.size > 0 && (
-        <div className="flex items-center gap-2 flex-wrap bg-accent-bg rounded-control px-3 py-2">
-          <span className="text-[12px] font-semibold text-navy">{selected.size} selected</span>
-          <Button variant="success" disabled={busy} onClick={() => run(() => actions.bulkSetStatus(selectedAdmins, 'active'))}>Activate</Button>
-          <Button variant="danger" disabled={busy} onClick={() => run(() => actions.bulkSetStatus(selectedAdmins, 'suspended'))}>Suspend</Button>
-          <Button variant="secondary" disabled={busy} onClick={() => run(() => actions.bulkRemove(selectedAdmins))}>Delete</Button>
-        </div>
+        <SelectionBar count={selected.size}>
+          <Button variant="secondary" disabled={busy} onClick={() => run(() => actions.bulkSetStatus(selectedAdmins, 'active'))}>
+            <Icon name="check" size={14} /> Activate
+          </Button>
+          <Button variant="outline-danger" disabled={busy} onClick={() => run(() => actions.bulkSetStatus(selectedAdmins, 'suspended'))}>
+            <Icon name="ban" size={14} /> Suspend
+          </Button>
+          <Button variant="outline-danger" disabled={busy} onClick={() => run(() => actions.bulkRemove(selectedAdmins))}>
+            <Icon name="delete" size={14} /> Delete
+          </Button>
+        </SelectionBar>
       )}
 
       <Card className="p-[18px]">

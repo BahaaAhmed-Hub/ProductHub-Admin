@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, Users, BadgeCheck, CreditCard, ShieldCheck, Share2, BellRing, ShieldAlert,
   ChevronLeft, ChevronRight, Search, X, KeyRound, Eye, ArrowLeft, Download, Check, LogOut,
-  Circle, type LucideIcon,
+  Ban, Trash2, Circle, type LucideIcon,
 } from 'lucide-react';
 
 const MAP: Record<string, LucideIcon> = {
@@ -23,6 +23,8 @@ const MAP: Record<string, LucideIcon> = {
   download: Download,
   check: Check,
   logout: LogOut,
+  ban: Ban,
+  delete: Trash2,
 };
 
 export function Icon({ name, size = 20, className }: { name: string; size?: number; className?: string }) {
