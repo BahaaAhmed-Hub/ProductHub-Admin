@@ -60,9 +60,13 @@ export function Sidebar() {
       <div className="flex flex-col gap-4">
         <div className="flex flex-col items-center gap-1.5 text-center">
           <Logo size={44} />
-          <div className="flex flex-col items-center gap-0 leading-tight">
+          <div className="inline-flex flex-col items-stretch leading-tight">
             <span className="text-lg font-semibold tracking-tight">ProductHub</span>
-            <span className="text-lg font-bold tracking-tight">Admin</span>
+            <span className="flex justify-between text-xl font-bold text-accent-bright">
+              {Array.from('ADMIN').map((letter, i) => (
+                <span key={i}>{letter}</span>
+              ))}
+            </span>
           </div>
         </div>
         <div className="flex flex-col gap-0.5">
