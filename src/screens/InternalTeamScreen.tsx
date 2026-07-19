@@ -91,12 +91,12 @@ export function InternalTeamScreen() {
       )}
 
       <Card className="p-[18px]">
-        <div className="grid grid-cols-[24px_1.3fr_1.2fr_1.4fr_1fr_90px] text-[10.5px] font-semibold text-label uppercase tracking-wide pb-2 border-b-[0.5px] border-hairline">
+        <div className="grid grid-cols-[24px_1.3fr_1.2fr_1.4fr_1fr_170px] text-[10.5px] font-semibold text-label uppercase tracking-wide pb-2 border-b-[0.5px] border-hairline">
           <span /><span>Name</span><span>Role</span><span>Area</span><span>Status</span><span />
         </div>
         {isLoading && <div className="py-3 text-[12.5px] text-body">Loading…</div>}
         {pag.pageItems.map((a) => (
-          <div key={a.id} className="grid grid-cols-[24px_1.3fr_1.2fr_1.4fr_1fr_90px] items-center py-2.5 text-[12.5px] border-b-[0.5px] border-hairline last:border-0">
+          <div key={a.id} className="grid grid-cols-[24px_1.3fr_1.2fr_1.4fr_1fr_170px] items-center py-2.5 text-[12.5px] border-b-[0.5px] border-hairline last:border-0">
             <input type="checkbox" checked={selected.has(a.id)} onChange={() => toggle(a.id)} className="w-3.5 h-3.5" />
             <span className="font-medium">{a.name}</span>
             <span className="text-body">{a.role}</span>
