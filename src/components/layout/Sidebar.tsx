@@ -60,7 +60,10 @@ export function Sidebar() {
       <div className="flex flex-col gap-4">
         <div className="flex flex-col items-center gap-1.5 text-center">
           <Logo size={44} />
-          <span className="text-lg font-semibold tracking-tight">ProductHub</span>
+          <div className="flex flex-col items-center gap-0 leading-tight">
+            <span className="text-lg font-semibold tracking-tight">ProductHub</span>
+            <span className="text-lg font-bold tracking-tight">Admin</span>
+          </div>
         </div>
         <div className="flex flex-col gap-0.5">
           {NAV.map((item) => (
